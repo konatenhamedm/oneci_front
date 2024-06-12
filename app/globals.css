@@ -16,18 +16,23 @@
   }
 }
 
+
 body {
+
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: #808080;
+  background-image: url('../public/bg-vert.webp');
+  background-repeat: no-repeat;
+  background-size: cover
+ /*  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgb(var(--background-end-rgb))
+  )
+  rgb(var(--background-start-rgb));; */
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
+.blob {
+  background: linear-gradient(#212121, #212121) padding-box,
+            linear-gradient(145deg, transparent 35%,#e81cff, #40c9ff) 
 }
