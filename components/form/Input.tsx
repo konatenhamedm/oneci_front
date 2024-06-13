@@ -44,8 +44,14 @@ const Input = ({
         onBlur={formik.handleBlur}
         onKeyPress={(event) => {
           if (existe) {
-            if (!/[1-5]/.test(event.key)) {
-              event.preventDefault();
+            if (longeur == 1) {
+              if (!/[1-5]/.test(event.key)) {
+                event.preventDefault();
+              }
+            } else {
+              if (!/[0-9]/.test(event.key)) {
+                event.preventDefault();
+              }
             }
           }
         }}

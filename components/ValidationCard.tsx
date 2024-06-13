@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import Image from "next/image";
 import Modal from "./modalOneci/Modal";
+import Input from "./form/Input";
 
 interface validationCardProps {
   operateur?: any;
@@ -165,51 +166,23 @@ const ValidationCard: React.FC<validationCardProps> = ({
               }`}
               onSubmit={formik.handleSubmit}
             >
-              <label
-                htmlFor="numero"
-                className={`block font-latoBold text-sm pb-2 ${
-                  formik.touched.numero && formik.errors.numero
-                    ? "text-red-400"
-                    : ""
-                }`}
-              >
-                {formik.touched.numero && formik.errors.numero
-                  ? formik.errors.numero
-                  : ""}
-              </label>
-
-              <p></p>
-              <input
-                className="bg-gray-700 text-white border-0 rounded-md p-2 mb-4 focus:bg-[#75d4c3] focus:outline-none focus:ring-1 focus:ring-[#f1a730] transition ease-in-out duration-150"
+              <Input
+                formik={formik}
                 type="text"
                 name="numero"
-                placeholder="Entrez votre numéro de telephone"
-                onChange={formik.handleChange}
-                value={formik.values.numero}
-                onBlur={formik.handleBlur}
+                placeholder="Entrez votre numéro de télephone"
+                existe={true}
+                longeur={10}
+                message={formik.errors.numero}
               />
-              <label
-                htmlFor="code"
-                className={`block font-latoBold text-sm pb-2 ${
-                  formik.touched.code && formik.errors.code
-                    ? "text-red-400"
-                    : ""
-                }`}
-              >
-                {formik.touched.code && formik.errors.code
-                  ? formik.errors.code
-                  : ""}
-              </label>
-
-              <p></p>
-              <input
-                className="bg-gray-700 text-white border-0 rounded-md p-2 mb-4 focus:bg-[#75d4c3] focus:outline-none focus:ring-1 focus:ring-[#f1a730] transition ease-in-out duration-150"
+              <Input
+                formik={formik}
                 type="text"
                 name="code"
-                placeholder="Entrez le code de validation"
-                onChange={formik.handleChange}
-                value={formik.values.code}
-                onBlur={formik.handleBlur}
+                placeholder="Entrez le code réçu"
+                existe={true}
+                longeur={5}
+                message={formik.errors.code}
               />
 
               <button
