@@ -14,7 +14,7 @@ import ServiceCardSeconde from "@/components/ServiceCardSeconde";
 export default function Home() {
   return (
     <>
-      <div className="grid grid-cols-3 gap-2 mt-[-2.5rem]">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:mt-[-2.5rem]">
         <ServiceCard
           title="Imprime extrait d'acte de naissance"
           description=""
@@ -46,7 +46,7 @@ export default function Home() {
       /> */}
       </div>
 
-      <div className="grid grid-cols-2 gap-2 mt-[-2.5rem]">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 py-2 md:py-0 md:mt-[-2.5rem]">
         <ServiceCardSeconde
           title="Services d'identités"
           description=""

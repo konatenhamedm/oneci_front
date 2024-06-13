@@ -26,7 +26,7 @@ export default function RootLayout({
         <div className="container bg-white  max-w-5xl border-double border-4 border-[#f0a020]">
           <main className="flex min-h-screen flex-col items-center justify-between ">
             <Header />
-            <div className="text-neutral-800 py-6 mt-auto relative overflow-hidden flex flex-col justify-around w-full  h-[440px] bg-white p-3 px-6">
+            <div className="text-neutral-800 py-6 mt-auto relative overflow-hidden flex flex-col justify-around w-full  md:h-[440px] bg-white p-3 px-6">
               {children}
             </div>
             <Footer />

@@ -67,7 +67,7 @@ function Footer() {
           </span>
         </h1>
         <ol className="lg:flex items-center w-full space-y-4 lg:space-x-8 lg:space-y-0">
-          <li className=" flex-1">
+          <li className=" flex-">
             <a
               href="https://pagedone.io/"
               className="border-l-2 flex flex-col border-t-0 pl-4 pt-0 border-solid border-[#75d4c3] font-medium lg:pt-4 lg:border-t-2 lg:border-l-0 lg:pl-0"
