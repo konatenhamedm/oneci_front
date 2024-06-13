@@ -137,7 +137,7 @@ const ValidationCard: React.FC<validationCardProps> = ({
     <>
       <div
         role="alert"
-        className="mx-auto w-full rounded-lg border-2 h-[334px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl col-span-5"
+        className="mx-auto w-full rounded-lg border-2 md:h-[334px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl md:col-span-5"
       >
         <div className="flex items-center gap-4 justify-center">
           {/* <div className="flex flex-col items-center justify-center h-screen dark"> */}
@@ -204,12 +204,14 @@ const ValidationCard: React.FC<validationCardProps> = ({
           {/* </div> */}
         </div>
       </div>
-      <div className="mx-auto w-full  h-[334px]  bg-white p-4 ">
+      <div className="mx-auto w-full  md:h-[334px]  bg-white p-4 ">
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-center justify-center light">
             <div className="w-full max-w-md  bg-white rounded-lg  p-6 items-center justify-center">
-              <form className="flex flex-col">
-                <h2 className="text-md font-bold text-black mt-[96px] ">OU</h2>
+              <form className="flex flex-col items-center justify-center">
+                <h2 className="text-md font-bold items-center justify-center text-black md:mt-[96px] ml-[80px] md:ml-[0px]">
+                  OU
+                </h2>
               </form>
 
               <div className="flex justify-center mt-4"></div>
@@ -219,12 +221,12 @@ const ValidationCard: React.FC<validationCardProps> = ({
       </div>
       <div
         role="alert"
-        className="mx-auto  w-full col-span-2 rounded-lg border-2 h-[334px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl"
+        className="mx-auto  w-full md:col-span-2 rounded-lg border-2 md:h-[334px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl"
       >
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-center justify-center light">
             <div className="w-full max-w-md  bg-white rounded-lg shadow-sm p-6">
-              <form className="flex flex-col">
+              <form className="flex flex-col ml-[65px] md:ml-[0px]">
                 <h2 className="text-md font-bold text-black ">Par QR Code</h2>
 
                 <Image
@@ -234,7 +236,7 @@ const ValidationCard: React.FC<validationCardProps> = ({
                   alt="Qr code ${type}"
                   height={113}
                   width={113}
-                  className=" mt-[23px] border-double border-2  border-[#f1a730] "
+                  className=" md:mt-[23px] border-double border-2  border-[#f1a730] "
                 />
               </form>
 

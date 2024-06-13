@@ -16,7 +16,7 @@ function Page({ params }: { params: { nni: string } }) {
   return (
     <>
       <Suspense fallback={<div>Loading...</div>}>
-        <div className="grid grid-cols-8 gap-2 justify-between ">
+        <div className="grid grid-cols-1 md:grid-cols-8 gap-2 justify-between ">
           <ValidationCard
             operateur={operateur}
             nombre={nombre}

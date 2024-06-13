@@ -36,13 +36,13 @@ function Footer() {
   return (
     <>
       <div className="flex w-full md:h-[50px] h-[80px]">
-        <div className="bg-[#FF0000] text-white relative h-[50px]">
+        <div className="bg-[#FF0000] text-white relative md:h-[50px] h-[40px]">
           <h3 className="py-2 px-3 font-bold">INFOS</h3>
         </div>
         {/* #e9b5a4 */}
-        <div className="overflow-x-hidden bg-[#f1a730] h-[50px] ">
+        <div className="overflow-x-hidden bg-[#f1a730] md:h-[50px] h-[40px]">
           <div className="py-1 animate-marquee whitespace-nowrap relative">
-            <span className="text-3xl mx-4 text-white">
+            <span className="text-xl md:text-3xl mx-4 text-white">
               Lorem Ipsum is simply dummy text of the printing and typesetting
               industry.
             </span>
@@ -58,7 +58,7 @@ function Footer() {
         {/* <h3 className="mb-8 mt-[-93px] text-5xl  text-center font-medium leading-tight text-primary ">
           Les étapes à suivre
         </h3> */}
-        <h1 className="md:mb-8 mb-4 md:mt-[-39px] text-xl  font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-4xl text-center">
+        <h1 className="md:mb-8 mb-4 md:mt-[-39px] mt-[-20px] text-xl  font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-4xl text-center">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
             Suivre bien les
           </span>{" "}

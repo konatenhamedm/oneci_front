@@ -36,7 +36,7 @@ const OperateurCard = ({
             nombre
         )
       }
-      className={`flex items-center p-3 h-[10em] w-[30em]   ${
+      className={`flex items-center p-3 h-[10em] md:w-[30em]   ${
         type == "orange"
           ? "bg-[#000000]"
           : type == "mtn"

@@ -10,7 +10,7 @@ function Page({ params }: { params: { nni: string } }) {
 
   return (
     <Suspense fallback={<div>Loading...</div>}>
-      <div className="grid grid-cols-2 gap-2 ">
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-2 ">
         <OperateurCard
           title="Orange Money"
           color="#000000"
