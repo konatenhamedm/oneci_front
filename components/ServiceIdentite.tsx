@@ -18,16 +18,14 @@ const ServiceIdentite = ({
   nni,
   type,
 }: ServiceCardProps) => {
-  // const router = useRouter();
+  const router = useRouter();
   return (
     <>
       {/*  <Suspense fallback={<div>Loading...</div>}> */}
       <div
-        /*   onClick={() => {
-          type == "service"
-            ? router.push("/serviceIdentite")
-            : router.push("/formulaire");
-        }} */
+        onClick={() => {
+          router.push("/serviceIdentite/" + type);
+        }}
         className="div h-[8em] w-full bg-white m-auto rounded-[1em] mb-[4px] relative group p-2 z-0 overflow-hidden border-2 border-[#ED7F10] cursor-pointer shadow-lg"
       >
         <div className="h-[7em] w-[7em] bg-[#75d4c3] rounded-full absolute bottom-full -left-[3.5em] group-hover:scale-[1350%] z-[-1] duration-[400ms]"></div>

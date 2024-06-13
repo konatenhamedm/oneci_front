@@ -14,21 +14,21 @@ function Page() {
             description=""
             image="illustration_achat_de_timbre_oneci.svg"
             nni=""
-            type="service"
+            type="achattimbre"
           />
           <ServiceIdentiteComponent
             title="Suivi des statuts et titres d'enrôlement"
             description=""
             image="illustration_verification_identite.svg"
             nni=""
-            type="service"
+            type="suivietat"
           />
           <ServiceIdentiteComponent
             title="Carte de résidence"
             description=""
             image="illustration_suivi_statut_oneci.svg"
             nni=""
-            type="service"
+            type="carteresidence"
           />
         </div>
         <div></div>
