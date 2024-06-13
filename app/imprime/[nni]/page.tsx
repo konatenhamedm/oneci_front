@@ -11,11 +11,11 @@ import { useRouter, useSearchParams } from "next/navigation";
 
 //const MyDoc = <Document>{/* <Page>// My document data</Page> */}</Document>;
 
-function Imprime() {
+function Imprime({ params }: { params: { nni: string } }) {
   const router = useRouter();
 
   const searchParams = useSearchParams();
-  const nni = searchParams.get("nni");
+  //const nni = searchParams.get("nni");
   const type = searchParams.get("type");
 
   const [isLoading, setIsLoading] = useState(false);
@@ -37,7 +37,7 @@ function Imprime() {
       // alert("");
       setIsLoading(true);
       router.push(
-        "/operateur/" + nni + "?nombre=" + values.nombre + "&doc=" + type
+        "/operateur/" + params.nni + "?nombre=" + values.nombre + "&doc=" + type
       );
       /*  await axiosAuthapi
         .get("/check/" + values.nni)
@@ -125,7 +125,7 @@ function Imprime() {
                 <form
                   className="flex flex-col"
                   onSubmit={formik.handleSubmit}
-                  action={` ${"/imprime/" + nni + "?doc=" + type}`}
+                  action={` ${"/imprime/" + params.nni + "?doc=" + type}`}
                 >
                   <label
                     htmlFor="nombre"

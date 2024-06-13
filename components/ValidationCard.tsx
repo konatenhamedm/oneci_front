@@ -209,7 +209,7 @@ const ValidationCard: React.FC<validationCardProps> = ({
           <div className="flex flex-col items-center justify-center light">
             <div className="w-full max-w-md  bg-white rounded-lg  p-6 items-center justify-center">
               <form className="flex flex-col items-center justify-center">
-                <h2 className="text-md font-bold items-center justify-center text-black md:mt-[96px] ml-[80px] md:ml-[0px]">
+                <h2 className="text-md font-bold items-center justify-center text-black md:mt-[96px] mt-[-20px] ml-[90px] md:ml-[0px]">
                   OU
                 </h2>
               </form>
@@ -221,7 +221,7 @@ const ValidationCard: React.FC<validationCardProps> = ({
       </div>
       <div
         role="alert"
-        className="mx-auto  w-full md:col-span-2 rounded-lg border-2 md:h-[334px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl"
+        className="mx-auto md:mt-[0px] mt-[-30px]  w-full md:col-span-2 rounded-lg border-2 md:h-[334px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl"
       >
         <div className="flex items-center gap-4">
           <div className="flex flex-col items-center justify-center light">

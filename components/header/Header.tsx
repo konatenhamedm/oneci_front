@@ -1,44 +1,56 @@
 "use client";
-import React, { useEffect } from "react";
-import { usePathname } from "next/navigation";
+import React, { useEffect, useState } from "react";
+import { usePathname, useRouter, useSearchParams } from "next/navigation";
 //import { useRouter } from "next/navigation";
 import Link from "next/link";
 import path from "path";
 import Image from "next/image";
 
 function Header() {
-  // const router = useRouter();
+  const router = useRouter();
   const pathname = usePathname();
+  const [route, setRoute] = useState("/");
+  const searchParams = useSearchParams();
 
-  /* const doc = searchParams.get("doc") ?? "";
+  const doc = searchParams.get("doc") ?? "";
+  const type = searchParams.get("type") ?? "";
   const operateur = searchParams.get("operateur") ?? "";
   const nombre = searchParams.get("nombre") ?? "";
-  const [route, setRoute] = React.useState("/"); */
-  const [routeImprime, setRouteImprime] = React.useState("");
+  const [routeActuelle, setRouteActuelle] = React.useState("/");
   // alert(doc);
-  /*   useEffect(() => {
+  useEffect(() => {
     const nni = pathname.replaceAll("/", " ").split(" ")[2];
-    if (pathname.includes("/service")) {
+    if (pathname.includes("/serviceIdentite")) {
       setRoute("/");
+    }
+    if (pathname.includes("/formulaire")) {
+      setRoute("/");
+    }
+    /* if (pathname.includes("/service")) {
+      setRoute("/");
+    } */
+    if (pathname.includes("/verification")) {
+      //alert(pathname);
+      setRoute("/formulaire/" + "?type=" + type);
     }
     if (pathname.includes("/imprime")) {
       //alert(pathname);
-      setRoute("/service/" + nni);
+      setRoute("/verification/" + nni + "?type=" + type);
     }
     if (pathname.includes("/operateur")) {
-      setRoute("/imprime/" + nni + "?doc=" + doc);
+      setRoute("/imprime/" + nni + "?type=" + doc);
     }
     if (pathname.includes("/validation")) {
       setRoute("/operateur/" + nni + "?nombre=" + nombre + "&doc=" + doc);
     }
-  }, [route, routeImprime, pathname, doc, operateur, nombre]);
- */
+  }, [route, pathname, doc, operateur, nombre]);
+
   return (
     <>
       <div className="flex w-full justify-start bg-gradient-to-r from-[#75d4c3] to-[#f1a730] ">
         <Link
-          href={"#"}
-          //href={route}
+          //href={"#"}
+          href={route}
           //onClick={() => router.push(route)}
           className="bg-gray-300 hover:bg-gray-400 text-gray-800 font-bold py-2 px-4 "
         >

@@ -19,6 +19,7 @@ function Page({ params }: { params: { nni: string } }) {
           type="orange"
           doc={doc}
           nombre={nombre}
+          nni={params.nni}
         />
         <OperateurCard
           title="MTN Money"
@@ -28,6 +29,7 @@ function Page({ params }: { params: { nni: string } }) {
           type="mtn"
           doc={doc}
           nombre={nombre}
+          nni={params.nni}
         />
         <OperateurCard
           title="MOOV Money"
@@ -37,6 +39,7 @@ function Page({ params }: { params: { nni: string } }) {
           type="moov"
           doc={doc}
           nombre={nombre}
+          nni={params.nni}
         />
         <OperateurCard
           title="Wave"
@@ -46,6 +49,7 @@ function Page({ params }: { params: { nni: string } }) {
           type="wave"
           doc={doc}
           nombre={nombre}
+          nni={params.nni}
         />
       </div>
     </Suspense>

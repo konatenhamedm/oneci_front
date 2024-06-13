@@ -106,7 +106,7 @@ function Footer() {
         </ol>
 
         <div className="flex items-center justify-center ">
-          <div className="flex flex-col ml-3 mt-[-25px]">
+          <div className="flex flex-col ml-3 mt-[-25px] md:mt-[0px]">
             <button
               onClick={() =>
                 openModal(

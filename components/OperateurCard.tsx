@@ -11,6 +11,7 @@ interface OperateurCardProps {
   type: string;
   doc: any;
   nombre: any;
+  nni: any;
 }
 
 const OperateurCard = ({
@@ -21,6 +22,7 @@ const OperateurCard = ({
   type,
   doc,
   nombre,
+  nni,
 }: OperateurCardProps) => {
   const router = useRouter();
   //alert(doc);
@@ -28,7 +30,9 @@ const OperateurCard = ({
     <div
       onClick={() =>
         router.push(
-          "/validation/nni?operateur=" +
+          "/validation/" +
+            nni +
+            "?operateur=" +
             type +
             "&doc=" +
             doc +
