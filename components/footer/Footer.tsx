@@ -35,7 +35,7 @@ function Footer() {
   };
   return (
     <>
-      <div className="flex w-full h-[50px]">
+      <div className="flex w-full md:h-[50px] h-[80px]">
         <div className="bg-[#FF0000] text-white relative h-[50px]">
           <h3 className="py-2 px-3 font-bold">INFOS</h3>
         </div>
@@ -58,7 +58,7 @@ function Footer() {
         {/* <h3 className="mb-8 mt-[-93px] text-5xl  text-center font-medium leading-tight text-primary ">
           Les étapes à suivre
         </h3> */}
-        <h1 className="mb-8 mt-[-39px] text-4xl font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-4xl text-center">
+        <h1 className="md:mb-8 mb-4 md:mt-[-39px] text-xl  font-extrabold text-gray-900 dark:text-white md:text-4xl lg:text-4xl text-center">
           <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
             Suivre bien les
           </span>{" "}
@@ -66,8 +66,8 @@ function Footer() {
             étapes suivvantes
           </span>
         </h1>
-        <ol className="lg:flex items-center w-full space-y-4 lg:space-x-8 lg:space-y-0">
-          <li className=" flex-">
+        <ol className="lg:flex items-center w-full space-y-1 lg:space-x-0 lg:space-y-0">
+          <li className=" flex-1">
             <a
               href="https://pagedone.io/"
               className="border-l-2 flex flex-col border-t-0 pl-4 pt-0 border-solid border-[#75d4c3] font-medium lg:pt-4 lg:border-t-2 lg:border-l-0 lg:pl-0"
@@ -106,7 +106,7 @@ function Footer() {
         </ol>
 
         <div className="flex items-center justify-center ">
-          <div className="flex flex-col ml-3">
+          <div className="flex flex-col ml-3 mt-[-25px]">
             <button
               onClick={() =>
                 openModal(

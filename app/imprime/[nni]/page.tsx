@@ -71,13 +71,13 @@ function Imprime() {
 
   return (
     <>
-      <div className="grid grid-cols-3 gap-2 ">
+      <div className="grid grid-cols-1 md:grid-cols-3  gap-2 ">
         {/*   <div className=" border-4 border-[#f1a730] to-[#75d4c3] from-[#f1a730] h-[410px]">
           <h1>hghgss</h1>
         </div> */}
         <div
           role="alert"
-          className="mx-auto w-[640px] rounded-lg border-2 h-[410px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl col-span-2"
+          className="mx-auto md:w-[640px] rounded-lg border-2 h-[410px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl col-span-2"
         >
           <div className="flex h-full items-center gap-4">
             {/*  <PDFViewer className="w-full h-full"> */}
@@ -98,7 +98,7 @@ function Imprime() {
 
         <div
           role="alert"
-          className="mx-auto max-w-lg rounded-lg border-2 h-[410px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl"
+          className="mx-auto md:max-w-lg rounded-lg border-2 md:h-[410px] border-[#f1a730] bg-white p-4 shadow-lg sm:p-6 lg:p-8 before:hover:rounded-b-2xl"
         >
           <div className="flex items-center gap-4">
             {/* <span className="shrink-0 rounded-full bg-emerald-400 p-2 text-white">
@@ -117,7 +117,7 @@ function Imprime() {
             </span> */}
 
             <div className="flex flex-col items-center justify-center light">
-              <div className="w-full max-w-md  bg-white rounded-lg shadow-sm p-6">
+              <div className="w-full max-w-md  bg-white rounded-lg shadow-sm md:p-6 p-11">
                 <h2 className="text-2xl font-bold text-gray-800 mb-4">
                   Nombre de copies
                 </h2>
