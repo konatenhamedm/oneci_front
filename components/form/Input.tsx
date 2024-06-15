@@ -21,7 +21,7 @@ const Input = ({
   return (
     <>
       {" "}
-      <label
+      {/*  <label
         htmlFor={name}
         className={`block font-latoBold text-sm pb-2 ${
           formik.touched + "." + name && formik.errors + "." + name
@@ -33,7 +33,7 @@ const Input = ({
           ? message
           : "name"}
       </label>
-      <p></p>
+      <p></p> */}
       {/*    <label
             htmlFor="denominationSociale"
             className={`block font-latoBold text-sm pb-2 ${

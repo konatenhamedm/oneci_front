@@ -2,8 +2,10 @@
 import Modal from "@/components/modalOneci/Modal";
 import FaceDetectionWebcam from "@/components/webCam/FaceDetectionWebcam";
 import { useSearchParams } from "next/navigation";
-import React, { ReactElement, useState } from "react";
+import React, { ReactElement, useEffect, useState } from "react";
 import Image from "next/image";
+import { axiosAuthapi } from "@/lib/axios";
+import { Personne } from "@/modele/Personne";
 
 function Page({ params }: { params: { nni: string } }) {
   const [showModal, setShowModal] = useState(false);
@@ -15,6 +17,8 @@ function Page({ params }: { params: { nni: string } }) {
   const [modalContent, setModalContent] = useState<React.ReactElement>();
   const [img, setImg] = useState(null);
   const searchParams = useSearchParams();
+  const [personne, setPersonne] = useState<Personne>({});
+  const [errorServeur, setErrorServeur] = useState(false);
 
   const type = searchParams.get("type") ?? "";
 
@@ -24,7 +28,8 @@ function Page({ params }: { params: { nni: string } }) {
     existe: boolean,
     size: string,
     gradient: boolean,
-    label: string
+    label: string,
+    errorServeur: boolean
   ) => {
     setModalContent(content);
     setTitle(title);
@@ -34,6 +39,7 @@ function Page({ params }: { params: { nni: string } }) {
     setLabel(label);
 
     setShowModal(true);
+    setErrorServeur(errorServeur);
   };
 
   const content = (
@@ -47,6 +53,18 @@ function Page({ params }: { params: { nni: string } }) {
     setShowModal(false);
     setModalContent(<div></div>);
   };
+
+  useEffect(() => {
+    axiosAuthapi
+      .get("/verification/data/" + params.nni)
+      .then((res) => {
+        setPersonne(res.data);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        //openModal(content, "Attention", true, "lg", false, "", true);
+      });
+  }, []);
   return (
     <>
       <div className="flex flex-col items-center md:mt-[-100px]">
@@ -76,7 +94,8 @@ function Page({ params }: { params: { nni: string } }) {
                 // objectFit: "cover",
                 border: "1px solid  gray",
               }}
-              src="/D-ID-portrait_character.webp"
+              src={personne.image}
+              //src="/D-ID-portrait_character.webp"
               alt="oneci"
             />
           </div>
@@ -84,19 +103,19 @@ function Page({ params }: { params: { nni: string } }) {
             <div className="py-3 px-4 grid grid-cols-2 sm:py-3  sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-extrabold text-black">NOM:</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                ONECI
+                {personne.nom}
               </dd>
             </div>
             <div className="py-3 px-4 grid grid-cols-2 sm:py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-extrabold text-black">PRENOMS :</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                ONECI
+                {personne.prenoms}
               </dd>
             </div>
             <div className="py-3 px-4 grid grid-cols-2 sm:py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
               <dt className="text-sm font-extrabold text-black">NNI :</dt>
               <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-                12345678912
+                {personne.nni}
               </dd>
             </div>
             <div className="py-3 px-4 grid grid-cols-2 sm:py-3 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -120,7 +139,8 @@ function Page({ params }: { params: { nni: string } }) {
                     true,
                     "3xl",
                     true,
-                    ""
+                    "",
+                    false
                   )
                 }
                 className="bg-gradient-to-r from-[#75d4c3] to-[#f1a730] text-white text-sm font-bold py-2 px-4 rounded-md mt-4 hover:bg-[#f1a730] hover:to-[#95ebdb] transition ease-in-out duration-150"
@@ -142,6 +162,7 @@ function Page({ params }: { params: { nni: string } }) {
         actionLabel={label}
         onCloseExiste={closeExiste}
         gradient={gradient}
+        errorServeur={errorServeur}
       />
     </>
   );

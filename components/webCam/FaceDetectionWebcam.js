@@ -6,6 +6,7 @@ import Webcam from "react-webcam";
 import Modal from "../modalOneci/Modal";
 import { useRouter } from "next/navigation";
 import Image from 'next/image';
+import { axiosAuthapi } from "@/lib/axios";
 
 /* interface faceDetectionWebcamProps {
   nni: string;
@@ -34,10 +35,10 @@ const FaceDetectionWebcam =({
         const formData = new FormData();
         formData.append("file", file);
         formData.append("path", "/konateh.png"); // Chemin de l'image de référence
-
+        formData.append("nni", nni);
         try {
           const response = await axios.post(
-            "http://localhost:5000/api/compare",
+            "http://127.0.0.1:5000/api/compare",
             formData,
             {
               headers: {
@@ -85,6 +86,7 @@ const FaceDetectionWebcam =({
 
     return () => clearInterval(interval);
   }, [capturing]);
+
 
   return (
     <>

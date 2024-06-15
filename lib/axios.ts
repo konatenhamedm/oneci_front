@@ -3,8 +3,8 @@ import axios from "axios";
 /* export const BASE_URL = "http://makoya.youskil.com/api";
 export const BASE_SITE = "http://makoya.youskil.com/uploads/";
 const BASE_URL1 = "http://makoya.youskil.com/api"; */
-export const BASE_URL = "http://127.0.0.1:8000/api";
-export const BASEURL = "http://127.0.0.1:8000";
+export const BASE_URL = "http://localhost:5000/api";
+export const BASEURL = "http://localhost:5000";
 
 export default axios.create({
   baseURL: BASE_URL,

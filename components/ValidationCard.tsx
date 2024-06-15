@@ -93,8 +93,8 @@ const ValidationCard: React.FC<validationCardProps> = ({
         </>,
         "Patientez....",
         true,
-        "3xl",
-        true,
+        "lg",
+        false,
         ""
       );
 
