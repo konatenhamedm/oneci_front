@@ -36,6 +36,7 @@ const ValidationCard: React.FC<validationCardProps> = ({
   const [label, setLabel] = useState("");
   const [modalContent, setModalContent] = useState<React.ReactElement>();
   const [img, setImg] = useState(null);
+  const [errorServeur, setErrorServeur] = useState(false);
 
   const openModal = (
     content: ReactElement,
@@ -43,7 +44,8 @@ const ValidationCard: React.FC<validationCardProps> = ({
     existe: boolean,
     size: string,
     gradient: boolean,
-    label: string
+    label: string,
+    errorServeur: boolean
   ) => {
     setModalContent(content);
     setTitle(title);
@@ -51,8 +53,13 @@ const ValidationCard: React.FC<validationCardProps> = ({
     setSize(size);
     setGradient(gradient);
     setLabel(label);
-
     setShowModal(true);
+    setErrorServeur(errorServeur);
+  };
+
+  const closeModal = () => {
+    setShowModal(false);
+    setModalContent(<div></div>);
   };
 
   const content = (
@@ -80,9 +87,10 @@ const ValidationCard: React.FC<validationCardProps> = ({
       /*  const modalElementNotFound: HTMLDialogElement | null =
       document.getElementById("my_modal_not_found") as HTMLDialogElement | null;
     const modalElementServeur: HTMLDialogElement | null =
-      document.getElementById("my_modal_serveur") as HTMLDialogElement | null;
-    setIsLoading(true); */
+      document.getElementById("my_modal_serveur") as HTMLDialogElement | null; */
+      setIsLoading(true);
 
+      //if (isLoading) {
       openModal(
         <>
           <div className="flex flex-row gap-2 justify-center mt-5 mb-5">
@@ -95,8 +103,10 @@ const ValidationCard: React.FC<validationCardProps> = ({
         true,
         "lg",
         false,
-        ""
+        "",
+        false
       );
+      // }
 
       const data = {
         nni: nni,
@@ -104,30 +114,35 @@ const ValidationCard: React.FC<validationCardProps> = ({
         code: values.code,
         numero: values.numero,
       };
-      /*  await axiosAuthapi
-        .post("/demande/create", data)
-        .then((res) => {
-          setIsLoading(false);
-
-          if (isLoading == false) {
-            modal.onClose();
-          }
+      await axiosAuthapi
+        .post("/new/demande", data)
+        .then(async (res) => {
+          await axiosAuthapi
+            .get("/imprime/" + nombre)
+            .then(async (resImprime) => {
+              await axiosAuthapi
+                .post("/finish/demande", data)
+                .then((resFinish) => {
+                  setInterval(() => {
+                    setIsLoading(false);
+                    closeModal();
+                  }, 3000);
+                  router.push("/");
+                })
+                .catch((err) => {
+                  openModal(content, "Attention", true, "lg", false, "", true);
+                });
+            })
+            .catch((err) => {
+              openModal(content, "Attention", true, "lg", false, "", true);
+            });
         })
         .catch((err) => {
-        }); */
+          openModal(content, "Attention", true, "lg", false, "", true);
+        });
     },
   });
 
-  const sendData = async () => {
-    const response = await axios.get(
-      "http://localhost:5000/api/greet/" + nombre,
-      {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      }
-    );
-  };
   const useCloseModal = () => {
     setShowModal(false);
     setModalContent(<div></div>);
@@ -248,13 +263,14 @@ const ValidationCard: React.FC<validationCardProps> = ({
 
       <Modal
         show={showModal}
-        onClose={useCloseModal}
+        onClose={closeModal}
         content={<>{modalContent}</>}
         size={size}
         title={title}
         actionLabel={label}
         onCloseExiste={closeExiste}
         gradient={gradient}
+        errorServeur={errorServeur}
       />
     </>
   );

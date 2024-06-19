@@ -6,7 +6,7 @@ import React from "react";
 function Page() {
   return (
     <>
-      <div className="grid grid-cols-6 gap-2">
+      <div className="grid grid-cols-1 md:grid-cols-6 gap-2">
         <div></div>
         <div className="col-span-4 gap-4">
           <ServiceIdentiteComponent

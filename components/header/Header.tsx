@@ -26,6 +26,13 @@ function Header() {
     if (pathname.includes("/formulaire")) {
       setRoute("/");
     }
+    if (
+      pathname.includes("/achattimbre") ||
+      pathname.includes("/carteresidence") ||
+      pathname.includes("/suivietat")
+    ) {
+      setRoute("/serviceIdentite");
+    }
     /* if (pathname.includes("/service")) {
       setRoute("/");
     } */

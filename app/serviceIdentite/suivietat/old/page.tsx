@@ -28,7 +28,7 @@ const Page: React.FC<{ params: { old: string } }> = ({ params }) => {
     },
     validationSchema: Yup.object({
       numero: Yup.string().required(
-        "NNI est requis pour continuer le processus"
+        "Numero est requis pour continuer le processus"
       ),
       nom: Yup.string().required("Nom est requis pour continuer le processus"),
       dateNaissance: Yup.date().required(
@@ -81,20 +81,19 @@ const Page: React.FC<{ params: { old: string } }> = ({ params }) => {
                   Nationale d'Identité
                 </label>
                 <div className="flex-inline mt-2 grid grid-cols-1 md:grid-cols-7 gap-5">
-                  <div className="col-span-2">
-                    {/*  <FormInput
+                  {/*  <FormInput
                       label="Entrez votre numéro de demande* :"
                       type="text"
                       id="demande"
                     /> */}
 
+                  <div className="col-span-2">
                     <label
                       htmlFor="numero"
-                      className={`block font-latoBold text-sm pb-2 ${
-                        formik.touched.numero && formik.errors.numero
-                          ? "text-red-400"
-                          : ""
-                      }`}
+                      className={`block font-latoBold text-sm pb-2 ${formik.touched.numero && formik.errors.numero
+                        ? "text-red-400"
+                        : ""
+                        }`}
                     >
                       {formik.touched.numero && formik.errors.numero
                         ? formik.errors.numero
@@ -116,11 +115,10 @@ const Page: React.FC<{ params: { old: string } }> = ({ params }) => {
                   <div className="col-span-3">
                     <label
                       htmlFor="nom"
-                      className={`block font-latoBold text-sm pb-2 ${
-                        formik.touched.nom && formik.errors.nom
-                          ? "text-red-400"
-                          : ""
-                      }`}
+                      className={`block font-latoBold text-sm pb-2 ${formik.touched.nom && formik.errors.nom
+                        ? "text-red-400"
+                        : ""
+                        }`}
                     >
                       {formik.touched.nom && formik.errors.nom
                         ? formik.errors.nom
@@ -141,15 +139,14 @@ const Page: React.FC<{ params: { old: string } }> = ({ params }) => {
                   <div className="col-span-2">
                     <label
                       htmlFor="numero"
-                      className={`block font-latoBold text-sm pb-2 ${
-                        formik.touched.dateNaissance &&
+                      className={`block font-latoBold text-sm pb-2 ${formik.touched.dateNaissance &&
                         formik.errors.dateNaissance
-                          ? "text-red-400"
-                          : ""
-                      }`}
+                        ? "text-red-400"
+                        : ""
+                        }`}
                     >
                       {formik.touched.dateNaissance &&
-                      formik.errors.dateNaissance
+                        formik.errors.dateNaissance
                         ? formik.errors.dateNaissance
                         : "Votre date de naissance"}
                     </label>
@@ -166,13 +163,15 @@ const Page: React.FC<{ params: { old: string } }> = ({ params }) => {
                     />
                   </div>
                 </div>
+
               </div>
-              <a
-                href="/serviceIdentite/suivietat/"
-                className="text-blue-600 items-center justify-center visited:text-purple-600 mt-[10px] text-sm"
-              >
-                Je ne suis pas en possession de mon numéro de demande
-              </a>
+              <div>
+                <LinkComponent
+                  href="/serviceIdentite/suivietat/"
+                  text=" Je ne suis pas en possession de mon numéro de demande"
+                />
+              </div>
+      
 
               {/* Votre autre code de formulaire continue ici... */}
               <div className="flex justify-center items-center mb-5 mt-[16px]">

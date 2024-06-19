@@ -21,12 +21,21 @@ const Page: React.FC<{ params: { new: string } }> = ({ params }) => {
 
     const formik = useFormik({
         initialValues: {
-            nni: "",
+            nom: "",
+            prenoms: "",
+            dateNaissance: "",
+            lieuNaissance: "",
+           
         },
         validationSchema: Yup.object({
-            nni: Yup.string()
-                .required("NNI est requis pour continuer le processus")
-                .length(11),
+            nom: Yup.string()
+                .required("Nom est requis pour continuer le processus"),
+            prenoms: Yup.string()
+                .required("Prenoms est requis pour continuer le processus"),
+            dateNaissance: Yup.date()
+                .required("Date de naissance est requise pour continuer le processus"),
+            lieuNaissance: Yup.string()
+                .required("Lieu de naissance est requis pour continuer le processus"),
         }),
         onSubmit: async (values) => {
             setIsLoading(true);
@@ -61,18 +70,118 @@ const Page: React.FC<{ params: { new: string } }> = ({ params }) => {
                                     >Veuillez renseigner les champs du formulaire ci-dessous afin de retrouver votre numéro de demande</label
                                     >
                                     <div className="flex-inline mt-2 grid grid-cols-1 sm:grid-cols-2 gap-5">
-                                        <FormInput label="Entrez votre nom* :" type="text" id="nom_complet" />
+                                        {/* <FormInput label="Entrez votre nom* :" type="text" id="nom_complet" />
                                         <FormInput label="Entrez vos prénoms* :" type="text" id="prenoms" />
                                         <FormInput label="Entrez votre date de naissance* :" type="date" id="dob" />
-                                        <FormInput label="Entrez votre lieu de naissance* :" type="text" id="lieu_naissance" />
+                                        <FormInput label="Entrez votre lieu de naissance* :" type="text" id="lieu_naissance" /> */}
+                                       <div>
+                                            <label
+                                                htmlFor="nom"
+                                                className={`block font-latoBold text-sm pb-2 ${formik.touched.nom && formik.errors.nom
+                                                    ? "text-red-400"
+                                                    : ""
+                                                    }`}
+                                            >
+                                                {formik.touched.nom && formik.errors.nom
+                                                    ? formik.errors.nom
+                                                    : "Votre nom de famille"}
+                                            </label>
+
+                                            <p></p>
+                                            <FormInput
+                                                formik={formik}
+                                                type="text"
+                                                name="nom"
+                                                placeholder="Entrez votre nom* "
+                                                existe={false}
+                                                longeur={255}
+                                                message={formik.errors.nom}
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label
+                                                htmlFor="prenoms"
+                                                className={`block font-latoBold text-sm pb-2 ${formik.touched.prenoms && formik.errors.prenoms
+                                                    ? "text-red-400"
+                                                    : ""
+                                                    }`}
+                                            >
+                                                {formik.touched.prenoms && formik.errors.prenoms
+                                                    ? formik.errors.prenoms
+                                                    : "Votre prénoms"}
+                                            </label>
+                                            <p></p>
+                                            <FormInput
+                                                formik={formik}
+                                                type="text"
+                                                name="prenoms"
+                                                placeholder="Entrez vos prénoms* "
+                                                existe={false}
+                                                longeur={255}
+                                                message={formik.errors.prenoms}
+                                            />
+                                       </div>
+
+                                       <div >
+                                            <label
+                                                htmlFor="dateNaissance"
+                                                className={`block font-latoBold text-sm pb-2 ${formik.touched.dateNaissance && formik.errors.dateNaissance
+                                                    ? "text-red-400"
+                                                    : ""
+                                                    }`}
+                                            >
+                                                {formik.touched.dateNaissance && formik.errors.dateNaissance
+                                                    ? formik.errors.dateNaissance
+                                                    : "Votre date de naissance"}
+                                            </label>
+                                            <p></p>
+                                            <FormInput
+                                                formik={formik}
+                                                type="date"
+                                                name="dateNaissance"
+                                                placeholder="Entrez votre date de naissance* "
+                                                existe={false}
+                                                longeur={255}
+                                                message={formik.errors.dateNaissance}
+                                            />
+                                       </div>
+
+                                     <div >
+                                            <label
+                                                htmlFor="lieuNaissance"
+                                                className={`block font-latoBold text-sm pb-2 ${formik.touched.lieuNaissance && formik.errors.lieuNaissance
+                                                    ? "text-red-400"
+                                                    : ""
+                                                    }`}
+                                            >
+                                                {formik.touched.lieuNaissance && formik.errors.lieuNaissance
+                                                    ? formik.errors.lieuNaissance
+                                                    : "Votre lieu de naissance"}
+                                            </label>
+                                            <p></p>
+                                            <FormInput
+                                                formik={formik}
+                                                type="text"
+                                                name="lieuNaissance"
+                                                placeholder="Entrez votre lieu de naissance* "
+                                                existe={false}
+                                                longeur={255}
+                                                message={formik.errors.lieuNaissance}
+                                            />
+                                     </div>
+                                  
 
                                     </div>
                                 </div>
+                                <div className='py-5'>
+                                    <LinkComponent
+                                        href="/serviceIdentite/suivietat/"
+                                        text=" Je ne suis pas en possession de mon numéro de demande"
+                                    />
+                                </div>
 
-                                <a href="/serviceIdentite/suivietat/" className="text-blue-600 visited:text-purple-600 ..">
-                                    Je ne suis pas en possession de mon numéro de demande
-                                </a>
-
+                               
 
 
 

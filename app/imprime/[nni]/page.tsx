@@ -181,7 +181,7 @@ function Imprime({ params }: { params: { nni: string } }) {
                     Download
                   </Link> */}
                   <BoutonValide
-                    title="Soumettre la demande"
+                    title="Valider et Continuer"
                     colorFrom="#75d4c3"
                     colorTo="#f1a730"
                   />
