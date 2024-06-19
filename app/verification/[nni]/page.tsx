@@ -17,7 +17,14 @@ function Page({ params }: { params: { nni: string } }) {
   const [modalContent, setModalContent] = useState<React.ReactElement>();
   const [img, setImg] = useState(null);
   const searchParams = useSearchParams();
-  const [personne, setPersonne] = useState<Personne>({});
+  //const [personne, setPersonne] = useState<Personne>({});
+  const [personne, setPersonne] = useState<Personne>({
+    id: 0,
+    nni: "",
+    nom: "",
+    prenoms: "",
+    image: "",
+  });
   const [errorServeur, setErrorServeur] = useState(false);
 
   const type = searchParams.get("type") ?? "";
