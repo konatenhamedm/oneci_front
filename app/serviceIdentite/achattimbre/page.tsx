@@ -259,36 +259,42 @@ const Page: React.FC<{ params: { achattimbre: string } }> = ({ params }) => {
   };
 
   return (
-    <div className="grid grid-cols-6 gap-2 mt-[-2.5rem]">
-      <div></div>
-      <div className="col-span-6 gap-4">
+    <div className="flex flex-col w-full items-center mt-[1.5px] ">
+      {/* <div></div> */}
+      <div className="">
         <form
           onSubmit={formik.handleSubmit}
           className="flex flex-col"
           action={"/formulaireNni"}
         >
-          <div className="relative px-4 py-5 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
-            <label className="text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5">
-              Votre demande de titre sera effectuée à partir de :
-            </label>
-            <RadioGroup
-              options={radioOptions}
-              selectedOption={selectedOption}
-              onChange={handleRadioChange}
-            />
+          <div className="relative   bg-white mx-8 md:mx-0  rounded-3xl ">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              <label className="text-xl text-black dark:text-black ">
+                Votre demande de titre sera effectuée à partir de :
+              </label>
+              <label className="text-xl text-black dark:text-black">
+                Type de demande :
+              </label>
+            </div>
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mb-4">
+              <RadioGroup
+                options={radioOptions}
+                selectedOption={selectedOption}
+                onChange={handleRadioChange}
+              />
+              <RadioGroup
+                options={typeDemandeOptions}
+                selectedOption={selectedTypeOption}
+                onChange={handleTypeChange}
+              />
+            </div>
+
             {isCountrySelectVisible && (
               <CountrySelect options={countryOptions} />
             )}
-            <label className="text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-4 scale-75 top-4 z-10 origin-[0] start-2.5">
-              Type de demande
-            </label>
-            <RadioGroup
-              options={typeDemandeOptions}
-              selectedOption={selectedTypeOption}
-              onChange={handleTypeChange}
-            />
 
-            <div className="mt-2 grid grid-cols-1 sm:grid-cols-4 gap-5">
+            <div className="mt-4 grid grid-cols-1 sm:grid-cols-4 gap-5">
               <div>
                 <label
                   htmlFor="nom"
@@ -506,7 +512,7 @@ const Page: React.FC<{ params: { achattimbre: string } }> = ({ params }) => {
           </div>
         </form>
       </div>
-      <div></div>
+      {/*  <div></div> */}
       <Modal
         show={showModal}
         onClose={useCloseModal}
