@@ -1,7 +1,9 @@
 "use client";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { ReactElement, useState } from "react";
 import Image from "next/image";
+import Modal from "./modalOneci/Modal";
+import QRCodeScanner from "../components/webCam/QRCodeScanner";
 interface ServiceCardProps {
   title: string;
   description: string;
@@ -18,10 +20,171 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   type,
 }) => {
   const router = useRouter();
+  const [showModal, setShowModal] = useState(false);
+  const [titre, setTitre] = useState("dd");
+  const [size, setSize] = useState("3xl");
+  const [gradient, setGradient] = useState(false);
+  const [closeExiste, setCloseExiste] = useState(true);
+  const [label, setLabel] = useState("");
+  const [modalContent, setModalContent] = useState<React.ReactElement>();
+  const [errorServeur, setErrorServeur] = useState(false);
+
+  const openModal = (
+    content: ReactElement,
+    titre: string,
+    existe: boolean,
+    size: string,
+    gradient: boolean,
+    label: string,
+    errorServeur: boolean
+  ) => {
+    setModalContent(content);
+    setTitre(titre);
+    setCloseExiste(existe);
+    setSize(size);
+    setGradient(gradient);
+    setLabel(label);
+
+    setShowModal(true);
+    setErrorServeur(errorServeur);
+  };
+
+  const useCloseModal = () => {
+    setShowModal(false);
+    setModalContent(<div></div>);
+  };
+
+  const content = (
+    <>
+      <div
+        role="alert"
+        className="relative flex w-full px-4 py-4 text-base text-gray-900 rounded-lg font-regular bg-gray-900/10 items-center"
+        style={{ opacity: 1 }}
+      >
+        <div className="shrink-0">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            className="w-8 h-8 text-red-500"
+          >
+            <path
+              fillRule="evenodd"
+              d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
+              clip-rule="evenodd"
+            ></path>
+          </svg>
+        </div>
+        <div className="ml-3 mr-12">
+          <p className="block font-sans text-base antialiased font-medium leading-relaxed text-inherit">
+            S'il vous plaît veuillez choisir pour qui voulez faire l'opération
+          </p>
+        </div>
+      </div>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+        <button
+          onClick={() => router.push("/formulaire/?type=" + type)}
+          className="bg-gradient-to-r from-[#75d4c3] to-[#f1a730] text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-[#f1a730] hover:to-[#95ebdb] transition ease-in-out duration-150"
+          type="submit"
+        >
+          <Image
+            className="items-center justify-center md:ml-[40px] ml-[90px] "
+            width={100}
+            height={100}
+            alt="logo"
+            src="/437532.png"
+          />{" "}
+          Imprimer pour vous
+        </button>
+
+        <button
+          onClick={() =>
+            openModal(
+              content_cam,
+              "Faite votre choix...",
+              true,
+              "3xl",
+              false,
+              "",
+              false
+            )
+          }
+          className="bg-gradient-to-r from-[#75d4c3] to-[#f1a730] text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-[#f1a730] hover:to-[#95ebdb] transition ease-in-out duration-150"
+          type="submit"
+        >
+          <Image
+            className="items-center justify-center md:ml-[40px] ml-[90px] "
+            width={100}
+            height={100}
+            alt="logo"
+            src="/76828.png"
+          />{" "}
+          Imprimer pour quelqu'un
+        </button>
+
+        {/* <div className="flex flex-col items-end"> */}
+        <button
+          onClick={() => router.push("/formulairefils/?type=" + type)}
+          className="bg-gradient-to-r from-[#75d4c3] to-[#f1a730] text-white font-bold py-2 px-4 rounded-md mt-4 hover:bg-[#f1a730] hover:to-[#95ebdb] transition ease-in-out duration-150"
+          type="submit"
+        >
+          <Image
+            className="items-center justify-center md:ml-[40px] ml-[90px] "
+            width={100}
+            height={100}
+            alt="logo"
+            src="/10415.png"
+          />{" "}
+          Imprimer pour votre fils
+        </button>
+      </div>
+      {/* </div> */}
+    </>
+  );
+
+  const [result, setResult] = useState("");
+
+  const handleScan = async (data: any) => {
+    const response = await fetch("http://127.0.0.1:5000/compare", {
+      method: "POST",
+      body: JSON.stringify({
+        image1: data,
+        // Vous pouvez ajouter une autre image ou gérer la logique pour comparer deux images ici
+      }),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    });
+    const responseData = "22222222222";
+    setResult(responseData);
+  };
+
+  const content_cam = (
+    <div>
+      <h1>QR Code Scanner and Comparison</h1>
+      <QRCodeScanner onScan={handleScan} />
+      {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
+    </div>
+  );
+
   return (
     <>
       <div
-        onClick={() => router.push("/formulaire/?type=" + type)}
+        onClick={() => {
+          if (type == "extrait") {
+            openModal(
+              content,
+              "Faite votre choix...",
+              true,
+              "3xl",
+              false,
+              "",
+              false
+            );
+          } else {
+            router.push("/formulaire/?type=" + type);
+          }
+        }}
         className="div h-[8em] w-full bg-white m-auto rounded-[1em] relative group p-2 z-0 overflow-hidden border-2 border-[#ED7F10] cursor-pointer shadow-lg"
       >
         <div className="h-[7em] w-[7em] bg-[#75d4c3] rounded-full absolute bottom-full -left-[3.5em] group-hover:scale-[950%] z-[-1] duration-[400ms]"></div>
@@ -68,6 +231,18 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
           <div className="flex-grow border-t border-gray-400 group-hover:border-white group-hover:text-white duration-100"></div>
         </div> */}
       </div>
+
+      <Modal
+        show={showModal}
+        onClose={useCloseModal}
+        content={<>{modalContent}</>}
+        size={size}
+        title={titre}
+        actionLabel={label}
+        onCloseExiste={closeExiste}
+        gradient={gradient}
+        errorServeur={errorServeur}
+      />
     </>
   );
 };

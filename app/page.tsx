@@ -16,21 +16,21 @@ export default function Home() {
     <>
       <div className="grid grid-cols-1 md:grid-cols-3 gap-2 md:mt-[-2.5rem]">
         <ServiceCard
-          title="Imprime extrait d'acte de naissance"
+          title="Imprimer extrait d'acte de naissance"
           description=""
           image="illustration_achat_de_timbre_oneci.svg"
           nni=""
           type="extrait"
         />
         <ServiceCard
-          title="Imprime acte de Mariage"
+          title="Imprimer acte de Mariage"
           description=""
           image="illustration_achat_de_timbre_oneci.svg"
           nni=""
           type="mariage"
         />
         <ServiceCard
-          title="Imprime acte de décès"
+          title="Imprimer acte de décès"
           description=""
           image="illustration_achat_de_timbre_oneci.svg"
           nni=""

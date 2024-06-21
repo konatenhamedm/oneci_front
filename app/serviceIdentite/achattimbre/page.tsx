@@ -1,5 +1,4 @@
 "use client";
-
 import React, { ReactElement, useState } from "react";
 import { useFormik } from "formik";
 import { useRouter } from "next/navigation";
@@ -74,28 +73,14 @@ const Page: React.FC<{ params: { achattimbre: string } }> = ({ params }) => {
       adressemail: "",
     },
     validationSchema: Yup.object({
-      nom: Yup.string().required("Nom est requis pour continuer le processus"),
-      prenoms: Yup.string().required(
-        "Prenoms est requis pour continuer le processus"
-      ),
-      dateNaissance: Yup.date().required(
-        "Date de naissance est requise pour continuer le processus"
-      ),
-      lieuNaissance: Yup.string().required(
-        "Lieu de naissance est requis pour continuer le processus"
-      ),
-      nommere: Yup.string().required(
-        "Nom de mere est requis pour continuer le processus"
-      ),
-      prenomsmerere: Yup.string().required(
-        "Prenoms de mere est requis pour continuer le processus"
-      ),
-      telephone: Yup.string().required(
-        "Telephone est requis pour continuer le processus"
-      ),
-      adressemail: Yup.string().required(
-        "Adresse mail est requise pour continuer le processus"
-      ),
+      nom: Yup.string().required("Nom est requis "),
+      prenoms: Yup.string().required("Prenoms est requis"),
+      dateNaissance: Yup.date().required("Date de naissance est requise"),
+      lieuNaissance: Yup.string().required("Lieu de naissance est requis"),
+      nommere: Yup.string().required("Nom de mere est requis "),
+      prenomsmerere: Yup.string().required("Prenoms de mere est requis"),
+      telephone: Yup.string().required("Telephone est requis"),
+      adressemail: Yup.string().required("Adresse mail est requise"),
     }),
     onSubmit: async (values) => {
       setIsLoading(true);

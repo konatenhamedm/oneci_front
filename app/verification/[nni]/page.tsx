@@ -1,6 +1,7 @@
 "use client";
 import Modal from "@/components/modalOneci/Modal";
 import FaceDetectionWebcam from "@/components/webCam/FaceDetectionWebcam";
+import FaceDetectionWebcamParentFils from "@/components/webCam/FaceDetectionWebcamParentFils";
 import { useSearchParams } from "next/navigation";
 import React, { ReactElement, useEffect, useState } from "react";
 import Image from "next/image";
@@ -28,6 +29,7 @@ function Page({ params }: { params: { nni: string } }) {
   const [errorServeur, setErrorServeur] = useState(false);
 
   const type = searchParams.get("type") ?? "";
+  const parent_nni = searchParams.get("parent_nni") ?? "";
 
   const openModal = (
     content: ReactElement,
@@ -48,10 +50,23 @@ function Page({ params }: { params: { nni: string } }) {
     setShowModal(true);
     setErrorServeur(errorServeur);
   };
-
+  //alert(parent_nni);
   const content = (
     <>
-      <FaceDetectionWebcam nni={params.nni} type={type} />
+      {parent_nni !== "" ? (
+        <FaceDetectionWebcamParentFils
+          nni={params.nni}
+          type={type}
+          parent_nni={parent_nni}
+        />
+      ) : (
+        <FaceDetectionWebcam nni={params.nni} type={type} />
+      )}
+    </>
+  );
+  const content_parent = (
+    <>
+      <FaceDetectionWebcam nni={parent_nni} type={type} />
     </>
   );
   /*   openModal(content, "Verification idendité ...", true, "", true, ""); */
