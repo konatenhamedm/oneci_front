@@ -3,7 +3,6 @@ import { useRouter } from "next/navigation";
 import React, { ReactElement, useState } from "react";
 import Image from "next/image";
 import Modal from "./modalOneci/Modal";
-import QRCodeScanner from "../components/webCam/QRCodeScanner";
 interface ServiceCardProps {
   title: string;
   description: string;
@@ -162,7 +161,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
   const content_cam = (
     <div>
       <h1>QR Code Scanner and Comparison</h1>
-      <QRCodeScanner onScan={handleScan} />
+      {/*  <QRCodeScanner onScan={handleScan} /> */}
       {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
     </div>
   );
