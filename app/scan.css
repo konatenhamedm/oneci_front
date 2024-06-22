@@ -1,0 +1,27 @@
+/* QRCodeScanner.css */
+.qrcode-scanner {
+    position: relative;
+  }
+  
+  .scan-effect {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    border: 2px solid rgba(0, 255, 0, 0.8); /* Couleur et style du cadre de scan */
+    animation: scan 1s linear infinite; /* Animation de scan */
+  }
+  
+  @keyframes scan {
+    0% {
+      opacity: 0.8;
+    }
+    50% {
+      opacity: 0.4;
+    }
+    100% {
+      opacity: 0.8;
+    }
+  }
+  

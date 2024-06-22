@@ -3,6 +3,13 @@ import { useRouter } from "next/navigation";
 import React, { ReactElement, useState } from "react";
 import Image from "next/image";
 import Modal from "./modalOneci/Modal";
+import QRCodeScanner from "./webCam/QRCodeScanner";
+
+interface Result {
+  qr_code1: string;
+  qr_code2: string;
+  identical: boolean;
+}
 interface ServiceCardProps {
   title: string;
   description: string;
@@ -70,7 +77,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
             <path
               fillRule="evenodd"
               d="M2.25 12c0-5.385 4.365-9.75 9.75-9.75s9.75 4.365 9.75 9.75-4.365 9.75-9.75 9.75S2.25 17.385 2.25 12zm8.706-1.442c1.146-.573 2.437.463 2.126 1.706l-.709 2.836.042-.02a.75.75 0 01.67 1.34l-.04.022c-1.147.573-2.438-.463-2.127-1.706l.71-2.836-.042.02a.75.75 0 11-.671-1.34l.041-.022zM12 9a.75.75 0 100-1.5.75.75 0 000 1.5z"
-              clip-rule="evenodd"
+              clipRule="evenodd"
             ></path>
           </svg>
         </div>
@@ -102,7 +109,7 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
               content_cam,
               "Faite votre choix...",
               true,
-              "3xl",
+              "lg",
               false,
               "",
               false
@@ -141,28 +148,48 @@ const ServiceCard: React.FC<ServiceCardProps> = ({
     </>
   );
 
-  const [result, setResult] = useState("");
+  const [result, setResult] = useState(null);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState("");
 
-  const handleScan = async (data: any) => {
-    const response = await fetch("http://127.0.0.1:5000/compare", {
-      method: "POST",
-      body: JSON.stringify({
-        image1: data,
-        // Vous pouvez ajouter une autre image ou gérer la logique pour comparer deux images ici
-      }),
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-    const responseData = "22222222222";
-    setResult(responseData);
+  const handleScan = async (blob: any) => {
+    const formData = new FormData();
+    formData.append("image1", blob, "qrcode.jpg");
+
+    setError("null");
+    setLoading(true);
+
+    try {
+      const response = await fetch("http://127.0.0.1:5000/compare1", {
+        method: "POST",
+        body: formData,
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+
+      const responseData = await response.json();
+      setResult(responseData);
+    } catch (error) {
+      console.error("Erreur lors de l'envoi des données:", error);
+      setError("Erreur lors de l'envoi des données. Veuillez réessayer.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const content_cam = (
     <div>
-      <h1>QR Code Scanner and Comparison</h1>
-      {/*  <QRCodeScanner onScan={handleScan} /> */}
-      {result && <pre>{JSON.stringify(result, null, 2)}</pre>}
+      <QRCodeScanner onScan={handleScan} />
+      {loading && <p>Chargement...</p>}
+      {error && <p style={{ color: "red" }}>{error}</p>}
+      {result && (
+        <div>
+          <h2>Résultat de la comparaison</h2>
+          <pre>{JSON.stringify(result, null, 2)}</pre>
+        </div>
+      )}
     </div>
   );
 
